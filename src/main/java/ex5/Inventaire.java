@@ -3,10 +3,13 @@ package ex5;
 import java.util.ArrayList;
 import java.util.List;
 
+/**Classe utilitaire permettant de construire et de remplir une liste de caisse */
 public class Inventaire {
 
+	/**caisses: une liste de caisse	 */
 	private List<Caisse> caisses;
 
+	/** Constructeur permettant de génrérer les différentes taille de caisses	 */
 	public Inventaire() {
 		caisses = new ArrayList<>();
 		caisses.add(new Caisse("Petits objets"));
@@ -14,23 +17,22 @@ public class Inventaire {
 		caisses.add(new Caisse("Grands objets"));
 	}
 
+	/**
+	 * @param item l'item à indexer dans la caisse
+	 */
 	public void addItem(Item item) {
-
-		//TODO Faites évoluer ce code (idée: c'est le caisse qui doit "savoir" si elle peut accepter un objet ou non)
-		if (item.getPoids() < 5) {
-			caisses.get(0).getItems().add(item);
-		}
-		if (item.getPoids() >= 5 && item.getPoids() <= 20) {
-			caisses.get(1).getItems().add(item);
-		}
-		if (item.getPoids() >= 20) {
-			caisses.get(2).getItems().add(item);
+		for (Caisse caisse: caisses){
+			caisses.add(caisses.get(caisse.accept(item)));
 		}
 	}
 
+	/**
+	 * @return la taille de la caisse
+	 */
 	public int taille() {
-		
-		//TODO faites évoluer ce code.
-		return caisses.get(0).getItems().size() + caisses.get(1).getItems().size() + caisses.get(2).getItems().size();
+		for (Caisse caisse: caisses){
+			return caisse.getItems().size();
+		}
+		return 0;
 	}
 }

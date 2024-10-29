@@ -3,13 +3,17 @@ package ex5;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Représente le concept d'une caisse contenant des items */
 public class Caisse {
 
+	/** nom: nom de la liste */
 	private String nom;
+	/** items: une liste d'item que l'on tente d'insérer dans une caisse*/
 	private List<Item> items;
 
+
 	/** Constructeur
-	 * @param nom
+	 * @param nom le nom de la liste
 	 */
 	public Caisse(String nom) {
 		super();
@@ -17,6 +21,24 @@ public class Caisse {
 		this.items = new ArrayList<>();
 	}
 
+	/** Méthode permettant aux caisses de savoir si elle peuvent accepter l'item passer en paramètre
+	 * @param item l'item que l'on insére dans la liste de caisse
+	 * @return un indice qui permettra d'insérer l'item dans la bonne caisse
+	 */
+	public int accept(Item item){
+		if (item.getPoids() < 5) {
+			return 0;
+		}
+		if (item.getPoids() >= 5 && item.getPoids() <= 20) {
+			return 1;
+
+		}
+		if (item.getPoids() >= 20) {
+			return 2;
+
+		}
+		return 0;
+	}
 	/** Getter pour l'attribut nom
 	 * @return the nom
 	 */
@@ -46,3 +68,4 @@ public class Caisse {
 	}
 	
 }
+

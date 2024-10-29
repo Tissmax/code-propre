@@ -1,8 +1,10 @@
 package ex5;
 
+/** Représente un item*/
 public class Item {
-
+	/** Le nom de l'item */
 	private String nom;
+	/** Le poid de l'item*/
 	private int poids;
 	
 	/** Getter pour l'attribut nom

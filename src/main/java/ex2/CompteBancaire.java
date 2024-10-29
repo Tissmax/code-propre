@@ -11,16 +11,13 @@ public class CompteBancaire {
 	/** decouvert : un découvert est autorisé seulement pour les comptes courants */
 	private double decouvert;
 	
-	/** tauxRemuneration : taux de rémunération dans le cas d'un livret A */
-	private double tauxRemuneration;
-	
 	/** Le type vaut soit CC=Compte courant, ou soit LA=Livret A */
 	private String type;
 	
-	/**
-	 * @param solde
-	 * @param decouvert
-	 * @param type
+	/** Ce constructeur sert à créer un compte courrant
+	 * @param solde le solde du compte
+	 * @param decouvert le découvert du compte
+	 * @param type le type de compte
 	 */
 	public CompteBancaire(String type, double solde, double decouvert) {
 		super();
@@ -28,31 +25,18 @@ public class CompteBancaire {
 		this.solde = solde;
 		this.decouvert = decouvert;
 	}
-	
-	
-	/** Ce constructeur est utilisé pour créer un compte de type Livret A
-	 * @param type = LA
-	 * @param solde représente le solde du compte
-	 * @param decouvert  représente le découvert autorisé
-	 * @param tauxRemuneration  représente le taux de rémunération du livret A
-	 */
-	public CompteBancaire(String type, double solde, double decouvert, double tauxRemuneration) {
-		super();
-		this.type = type;
-		this.solde = solde;
-		this.decouvert = decouvert;
-		this.tauxRemuneration = tauxRemuneration;
-	}
-	
+
 	/** Ajoute un montant au solde
-	 * @param montant
+	 * @param montant le montant à créditer
 	 */
 	public void ajouterMontant(double montant){
+
 		this.solde += montant;
 	}
 	
-	/** Ajoute un montant au solde
-	 * @param montant
+	/** Débite un montant au solde.
+	 * Vérifie le type de compte afin d'appliquer la méthode correspondante
+	 * @param montant le montant à débiter
 	 */
 	public void debiterMontant(double montant){
 		if (type.equals("CC")){
@@ -66,13 +50,8 @@ public class CompteBancaire {
 			}	
 		}
 	}
-	
-	public void appliquerRemuAnnuelle(){
-		if (type.equals("LA")){
-			this.solde = solde + solde*tauxRemuneration/100;
-		}
-	}
-	
+
+
 	/** Getter for solde
 	 * @return the solde
 	 */
@@ -97,18 +76,6 @@ public class CompteBancaire {
 	 */
 	public void setDecouvert(double decouvert) {
 		this.decouvert = decouvert;
-	}
-	/** Getter for tauxRemuneration
-	 * @return the tauxRemuneration
-	 */
-	public double getTauxRemuneration() {
-		return tauxRemuneration;
-	}
-	/** Setter
-	 * @param tauxRemuneration the tauxRemuneration to set
-	 */
-	public void setTauxRemuneration(double tauxRemuneration) {
-		this.tauxRemuneration = tauxRemuneration;
 	}
 	/** Getter for type
 	 * @return the type
